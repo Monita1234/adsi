@@ -6,11 +6,11 @@
 
 
 {% block content %}
-<h5><center> Ingrese la Identificacion del Usuario que desea buscar:</center></h5>
+	<h4><center> Ingrese la identificación del usuario que desea buscar:</center></h4>
 	<form action="." method="POST" align="center">
 		{% csrf_token %}
 		{{form.as_p}}
-		<button type="submit" class="btn btn-success" >Consultar Usuario</button>
+		<button type="submit" class="btn btn-success" >Consultar usuario</button>
 	</form>
 
 	
@@ -28,11 +28,11 @@
 				<center><p><b>Nombre y </b> <b>Apellidos:</b>
 				<h3>{{ usuario.nombre }} {{ usuario.apellidos }}</h3>
 				
-				<p> <b>Identificacion: </b>{{ usuario.identificacion }}</p>
+				<p> <b>Identificación: </b>{{ usuario.identificacion }}</p>
 				<p> <b>Ciudad: </b>{{ usuario.ciudad}}</p>
-				<p> <b>Telefono: </b>{{ usuario.telefono }}</p>
-				<p> <b>Direccion: </b>{{ usuario.direccion }}</center></p>
-			{% if user.is_authenticated and user.is_staff %}
+				<p> <b>Teléfono: </b>{{ usuario.telefono }}</p>
+				<p> <b>Dirección: </b>{{ usuario.direccion }}</center></p>
+			{% if user.is_authenticated and user.is_staff and user.is_superuser %}
 				<a class="btn btn-warning" href="/edit/usuario/{{ usuario.id }}">  Editar</a>
 			{% endif %}
 		
@@ -55,6 +55,6 @@
 		
 		{% endif %}
 	{% endif %}
-	<a class="btn btn-primary" href="{% url 'vista_administrar' %}">Regresar al menu anterior</a>
+	<a class="btn btn-primary" href="{% url 'vista_administrar' %}">Regresar</a>
 	
 {% endblock %}

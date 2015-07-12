@@ -17,12 +17,11 @@
     });
   });
   </script>
-
-	<form action="." method="POST">
+  <center> <h4> Editar préstamo  </h4> </center>
+	<form action="." method="POST"align="center">
 		{% csrf_token %}
 		{{ form.as_p }}
-		<button type="submit" class="btn btn-success">Guardar Cambios </button>
-		<input class="btn btn-danger" type="reset" value="Limpiar">
-	</form>
+		<button type="submit" class="btn btn-success">Guardar cambios </button>
+		<a class="btn btn-danger" href="/prestamos/"> Cancelar </a>
 	{{ info}}
 {% endblock %}

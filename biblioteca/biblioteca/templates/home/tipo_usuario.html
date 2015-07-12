@@ -8,10 +8,10 @@
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="True">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			<h3 id="myModalLabel"> Eliminar Usuario</h3>
+			<h3 id="myModalLabel"> Eliminar usuario</h3>
 		</div>
 		<div class="modal-body">
-		<p>¿Esta seguro que desea eliminar el tipo de usuario con nombre <span id="modal_name"></span>?</p>
+		<p>¿Está seguro que desea eliminar el tipo de usuario con nombre <span id="modal_name"></span>?</p>
 
 		</div>
 		<div class="modal-footer">
@@ -24,19 +24,14 @@
 		</div>
 	</div>
 
-	<h3>Tipos De Usuarios</h3>
-	{% if user.is_authenticated and user.is_staff }
+	<h3>Tipos de usuarios</h3>
+	{% if user.is_authenticated and user.is_staff and user.is_superuser %}	
 
-		<a <a class="btn btn-info"  href="/add/tipo-usuario/{{ t.id }}"> <li class="icon-plus"></li>Agregar Tipo de Usuario</a>
+		<a <a class="btn btn-info"  href="/add/tipo-usuario/{{ t.id }}"> <li class="icon-plus"></li>Agregar tipo de usuario</a>
 	{% endif %}
 	<br>
 	{% if tipos_usuarios %}
 	<table class= "table table-hover" id="tabla_productos">
-		<theader>
-			
-				<th>Tipos De Usuario</th>
-			
-		</theader>
 	
 		{% for p in tipos_usuarios %}
 		
@@ -45,7 +40,7 @@
 				<tr id="tr{{p.id}}">
 
 					<td><p>{{ p.nombre }}</td>
-					{% if user.is_authenticated and user.is_staff %}	
+					{% if user.is_authenticated and user.is_staff and user.is_superuser %}		
 						<td><a class="btn btn-warning" href="/edit/tipo-usuario/{{ p.id }}">  Editar</a></td>
 						<td><a href="#myModal" role="button" class="btn btn-danger delete" data-toggle="modal" id="{{p.id}}" data-name="{{p.nombre}}"><i class="icon-trash icon-white"></i>Eliminar</a></td>
 					{% endif %}
@@ -65,13 +60,13 @@
 	
 
 	</table>
-	<a class = "btn btn-inverse" href="/administrar/"></li>  Regresar A El Menu Administrador </a>
+	<a class = "btn btn-inverse" href="/administrar/"></li>  Regresar al menú del administrador </a>
 	<br>
-	<a class = "btn btn-inverse" href="/usuarios/"></li>  Regresar A El Menu Usuarios </a>
+	<a class = "btn btn-inverse" href="/usuarios/"></li>  Ir al menú usuarios </a>
 		
 
 	{% else %}
-		<h2>No Existen Tipos De Usuarios :(</h2>
+		<h2>No existen tipos de usuarios</h2>
 
 	{% endif %}
 {% endblock %}

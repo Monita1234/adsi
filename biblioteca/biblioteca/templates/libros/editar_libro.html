@@ -27,17 +27,18 @@
     });
   });
   </script>
-	 
-	<form action="." method = "POST" enctype = "multipart/form-data">
+	
+    <center> <h4> Editar libro </h4> </center>
+	<form action="." method = "POST" enctype = "multipart/form-data"> 
 		{% csrf_token %}
 		{{ form.as_p }}
 			
 		<input type="submit" class="btn btn-success" value="Guardar Cambios">
 		<input type="submit" class="btn btn-danger" value="Cancelar">
 
-
-		
 	</form>	
 
 	{{ info }}
 {% endblock %}
+
+    

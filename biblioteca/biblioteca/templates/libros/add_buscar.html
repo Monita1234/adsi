@@ -5,13 +5,31 @@
 {% endblock %}
 
 {% block content %}
+
+	<h3><center>Buscar libro</center></h3>
+		<div align="center" class ="alert alert-info">
+	      	<p> Digite el título, autor, editorial o categoría del libro que desea buscar </p>
+	    </div>
 	 <center><form action="." method="POST" align="center">
-	 	<h3>DIGITE EL TITULO, AUTOR, EDITORIAL O CATEGORIA DEL LIBRO QUE DESEA BUSCAR</h3>
+	 	
 		{% csrf_token %}
 		{{form.as_p}}
-		<input class="btn btn-success" type="submit" value ="Buscar"/>
+		<input class="btn btn-large btn-success" type="submit" value ="Buscar"/>
 		
 	</form></center>
+
+
+
+
+
+	{% if info_enviado %}
+	    
+	  	<form action="." method="POST" align="center">
+			{% csrf_token %}                                               
+			{{ form.as_p }}
+			<input type="submit" value="Generar Reporte" class = "btn btn-success"/>
+		</form>
+	{% endif %}
 
 		
 
@@ -19,7 +37,7 @@
 	
 
 		{% if libro   %}
-			<h3>Se encontraron los siguientes Libros relacionados con: "{{busqueda}}"</h3>
+			<h3>Se encontraron los siguientes libros relacionados con: "{{busqueda}}"</h3>
 				<table  class = "table table-hover ">
 					<tbody>
 						<tr>
@@ -27,7 +45,7 @@
 								
 									<theader>
 											<tr>
-												<th><h2>Libro</h2> </th>	
+												<th><h4>Libro</h4> </th>	
 											</tr>
 											<tr>
 												<th> Nombre </th>
@@ -45,12 +63,12 @@
 
 											{% if l.disponibilidad %}
             									Disponible
-            									<td><a  class="btn btn-primary" href="/reservar/{{l.id}}"> Reservar Libro </a></td>
+            									<td><a  class="btn btn-primary" href="/reservar/{{l.id}}"> Reservar libro </a></td>
             								{% else %}
             									No Disponible
             								{% endif %}
 										</td>
-									
+
 									
 									<tr>
 								{% endfor %}
@@ -67,11 +85,11 @@
 								<tr>
 									<theader>
 			 									<tr>
-													<th><h2> Autor</h2> </th>	
+													<th><h4> Autor</h4> </th>	
 												</tr>
 												<tr>
-													<th> Nombre Del Libro </th>	
-													<th> Version </th>
+													<th> Nombre del libro </th>	
+													<th> Versión </th>
 													<th> Autor</th>
 													<th> Disponibilidad</th>
 
@@ -105,19 +123,19 @@
 			{% endif %}
 			
 				{% if categoria  %}
-				<h3>Se encontraron los siguientes libros relacionados con la Categoria: "{{busqueda}}"</h3>
+				<h3>Se encontraron los siguientes libros relacionados con la categoría: "{{busqueda}}"</h3>
 					<table  class = "table table-hover ">
 						<tbody>
 							<tr>
 								<tr>
 									<theader>
 			 									<tr>
-													<th><h2> Categorias</h2> </th>	
+													<th><h4> Categorías</h4> </th>	
 												</tr>
 												<tr>
 													
-													<th>Nombre Del Libro</th>
-													<th>Version</th>
+													<th>Nombre del libro</th>
+													<th>Versión</th>
 													<th>Disponibilidad</th>
 													
 
@@ -149,18 +167,18 @@
 				{% endif %}
 	
 				{% if editorial  %}		
-					<h3>Se encontraron los siguientes libros relacionados con la Editorial: "{{busqueda}}"</h3>
+					<h3>Se encontraron los siguientes libros relacionados con la editorial: "{{busqueda}}"</h3>
 						<table  class = "table table-hover ">
 							<tbody>
 								<tr>
 									<tr>
 										<theader>
 				 									<tr>
-														<th><h2> Editoriales</h2> </th>	
+														<th><h4> Editoriales</h4> </th>	
 													</tr>
 													<tr>
-														<th> Nombre Del Libro</th>	
-														<th> Version </th>
+														<th> Nombre del libro</th>	
+														<th> Versión </th>
 														<th> Editorial</th>
 														<th> Disponibilidad</th>
 														
@@ -192,9 +210,9 @@
 				{%else%}
 		
 		{% if mensaje_error  %}
-			<div class="alert alert-danger" class="alert fade in">
+			<div class="alert alert-info">
 			<strong align ="center">
-			<h3>No se encontro su busqueda</h3>
+			<h3>No se encontró su búsqueda</h3>
 			</strong>
 			</div>
 		{% endif %}
